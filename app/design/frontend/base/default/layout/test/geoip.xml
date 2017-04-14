@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <default>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/bootstrap.min.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/custom.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/bootstrap.min.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/flag-icon.min.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/custom.css</name>
+            </action>
+        </reference>
+
+        <reference name="before_body_end">
+            <block type="test_geoip/popup" name="geoip.popup" template="test/geoip_popup.phtml"/>
+        </reference>
+    </default>
+
+</layout>

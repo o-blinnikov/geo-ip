@@ -1,0 +1,43 @@
+<?php $cookie = Mage::getSingleton('core/cookie'); ?>
+<?php if (!$cookie->get('geoip')): ?>
+<?php $geoIPCountry = Mage::getSingleton('geoip/country'); ?>
+<?php $countryCode = $geoIPCountry->getCountry(); ?>
+<?php $_countries = $this->getSwitchableCountries() ?>
+
+<!-- Modal -->
+<div class="modal fade" id="geoIpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><?php echo $this->__('Choose your delivery destination:') ?></h4>
+            </div>
+            <div class="modal-body">
+                <span class="label"><?php echo $this->__('Country for delivery') ?></span>
+                <div class="flag-icon">&nbsp;</div>
+                <?php if (count($_countries) > 0): ?>
+                    <select name="country" id="country" class="geoip-country-select"> 
+                        <option value=""><?php $this->__('Please Select') ?></option>
+                        <?php foreach($_countries as $_country): ?>
+                            <option value="<?php echo $_country['value'] ?>"
+                                    data-url="<?php echo $_country['url'] ?>"
+                                    data-currency="<?php echo $_country['currency'] ?>"
+                                    data-flag="<?php echo $_country['value'] ?>"
+                                    <?php if($_country['value'] == $countryCode):?> selected <?php endif; ?>>
+                                <?php echo $_country['label'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                <?php endif; ?>
+                <div class="input-row">
+                    <p><span class="label"><?php echo $this->__('Your order will be in') ?></span><span id="geoIpCurrency">&nbsp;</span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $this->__('Close') ?></button>
+                <button type="button" class="btn btn-primary proceed"><?php echo $this->__('Go') ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
