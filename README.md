@@ -1,6 +1,6 @@
 # GeoIP Module. Store switcher based on customer location
 
-##1. Overview##
+## 1. Overview
 GeoIP module which targets a user’s delivery address when they first visit the site.
 
 ##2. How it Works##
